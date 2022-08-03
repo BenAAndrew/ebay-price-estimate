@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="style.css" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <div class="container forget-password">
+            <div class="row">
+                <div class="col-md-12 col-md-offset-4">
+                    <div class="panel panel-2">
+                        <div class="panel-body">
+                            <div class="text-center">
+                                <h2 class="text-center">Price history</h2>
+                                <div>
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                                <script>
+                                    const labels = [
+                                      'January',
+                                      'February',
+                                      'March',
+                                      'April',
+                                      'May',
+                                      'June',
+                                    ];
+                                  
+                                    const data = {
+                                      labels: labels,
+                                      datasets: [{
+                                        label: 'Average',
+                                        backgroundColor: 'rgb(120, 162, 240)',
+                                        borderColor: 'rgb(52, 107, 235)',
+                                        data: [0, 10, 5, 2, 20, 30, 45],
+                                      }]
+                                    };
+                                  
+                                    const config = {
+                                      type: 'line',
+                                      data: data,
+                                      options: {fill: true}
+                                    };
+
+                                    const myChart = new Chart(
+                                      document.getElementById('myChart'),
+                                      config
+                                    );
+                                  </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
