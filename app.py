@@ -12,7 +12,7 @@ def index():
 
 @app.route("/", methods=["POST"])
 def upload_dataset():
-    url = build_url(request.values["search"], "used")
+    url = build_url(request.form["search"], request.form["condition"])
     items = get_items(url, include_delivery_price=False)
     items = remove_outliers(items)
 
