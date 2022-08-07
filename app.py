@@ -22,16 +22,18 @@ def upload_dataset():
 
     dates = sorted(set([i["date"] for i in items]))
     prices = [i["price"] for i in items]
+    min_price = min(prices)
     average_price = sum(prices) / len(prices)
+    max_price = max(prices)
     graph = get_date_series(items, dates)
-    volatility = get_volatility(prices)
+    volatility = get_volatility(min_price, average_price, max_price)
     formatted_dates = [d.strftime("%Y-%m-%d") for d in dates]
     return render_template(
         "out.html",
         dates=formatted_dates,
         average_price=average_price,
-        low=min(prices),
-        high=max(prices),
+        low=min_price,
+        high=max_price,
         graph=graph,
         volatility=volatility,
         sales=len(items),

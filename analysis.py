@@ -18,10 +18,7 @@ def get_date_series(items, dates):
     }
 
 
-def get_volatility(prices):
-    average_price = sum(prices) / len(prices)
-    min_price = min(prices)
-    max_price = max(prices)
+def get_volatility(min_price, average_price, max_price):
     min_diff = average_price - min_price
     max_diff = max_price - average_price
     diff = max(min_diff, max_diff)
