@@ -36,7 +36,7 @@ def get_sale_date(item):
     return datetime.strptime(f'{day} {month} {year}', "%d %b %Y").date()
 
 
-def get_items(url):
+def get_items(url, include_delivery_price=True):
     driver = webdriver.Chrome()
     driver.get(url)
     page_items = driver.find_elements(By.CLASS_NAME, "s-item")[1:]
@@ -44,10 +44,14 @@ def get_items(url):
     items = []
     for item in page_items:
         item_price = get_item_price(item)
-        delivery_price = get_delivery_price(item)
         date = get_sale_date(item)
-        if item_price is not None and delivery_price is not None:
-            items.append({"price": item_price + delivery_price, "date": date})
+        if item_price is not None:
+            if include_delivery_price:
+                delivery_price = get_delivery_price(item)
+                if delivery_price is not None:
+                    items.append({"price": item_price + delivery_price, "date": date})
+            else:
+                items.append({"price": item_price, "date": date})
 
     driver.close()
     return items

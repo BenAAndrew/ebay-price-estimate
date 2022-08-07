@@ -1,6 +1,7 @@
+from ebay import build_url, get_items
 from flask import Flask, render_template, request
-from main import items
-from analysis import get_date_series, get_range, get_volatility
+# from main import items
+from analysis import get_date_series, get_range, get_volatility, remove_outliers
 
 app = Flask(__name__, template_folder="static")
 
@@ -11,6 +12,10 @@ def index():
 
 @app.route("/", methods=["POST"])
 def upload_dataset():
+    url = build_url(request.values["search"], "used")
+    items = get_items(url, include_delivery_price=False)
+    items = remove_outliers(items)
+
     dates = sorted(set([i["date"] for i in items]))
     prices = [i["price"] for i in items]
     average_price = sum(prices) / len(prices)
