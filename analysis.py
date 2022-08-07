@@ -18,13 +18,7 @@ def get_date_series(items, dates):
     }
 
 
-def get_range(items):
-    prices = [i["price"] for i in items]
-    return {"low": min(prices), "high": max(prices)}
-
-
-def get_volatility(items):
-    prices = [i["price"] for i in items]
+def get_volatility(prices):
     average_price = sum(prices) / len(prices)
     min_price = min(prices)
     max_price = max(prices)

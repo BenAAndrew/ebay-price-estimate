@@ -1,7 +1,7 @@
 from ebay import build_url, get_items
 from flask import Flask, render_template, request
 # from main import items
-from analysis import get_date_series, get_range, get_volatility, remove_outliers
+from analysis import get_date_series, get_volatility, remove_outliers
 
 app = Flask(__name__, template_folder="static")
 
@@ -24,15 +24,15 @@ def upload_dataset():
     prices = [i["price"] for i in items]
     average_price = sum(prices) / len(prices)
     graph = get_date_series(items, dates)
-    range = get_range(items)
-    volatility = get_volatility(items)
+    volatility = get_volatility(prices)
     formatted_dates = [d.strftime("%Y-%m-%d") for d in dates]
     return render_template(
         "out.html",
         dates=formatted_dates,
         average_price=average_price,
+        low=min(prices),
+        high=max(prices),
         graph=graph,
-        range=range,
         volatility=volatility,
         sales=len(items),
     )

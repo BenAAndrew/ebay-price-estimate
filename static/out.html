@@ -64,7 +64,7 @@
               <div class="col-sm-6">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">{{ "£%.2f"|format(range.low) }} - {{ "£%.2f"|format(range.high) }}</h5>
+                    <h5 class="card-title">{{ "£%.2f"|format(low) }} - {{ "£%.2f"|format(high) }}</h5>
                     <p class="card-text">Price range</p>
                   </div>
                 </div>
@@ -91,7 +91,7 @@
               <div class="col-sm-6">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">+{{ "£%.2f"|format(average_price-range.low) }}</h5>
+                    <h5 class="card-title">+{{ "£%.2f"|format(average_price-low) }}</h5>
                     <p class="card-text">Average vs. all time low</p>
                   </div>
                 </div>
