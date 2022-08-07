@@ -1,18 +1,18 @@
-body{
-    background:#f3c538 !important;
+body {
+    background: #f3c538 !important;
 }
 
-.main .panel-default{
+.main .panel-default {
     padding: 31%;
     margin-top: -27%;
 }
 
-.main .panel-2{
+.main .panel-2 {
     padding: 21%;
     margin-top: -17%;
 }
 
-.main .panel-body{
+.main .panel-body {
     padding: 8%;
     margin-bottom: -50%;
     background: #fff;
@@ -20,7 +20,7 @@ body{
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-img{
-    width:40%;
-    margin-bottom:10%;
+img {
+    width: 40%;
+    margin-bottom: 10%;
 }

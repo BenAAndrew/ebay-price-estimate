@@ -36,7 +36,7 @@ def get_delivery_price(item):
 def get_sale_date(item):
     date_text = item.find_element(By.CSS_SELECTOR, ".s-item__title--tagblock .POSITIVE").text
     day, month, year = date_text.split(" ")[1:4]
-    return datetime.strptime(f'{day} {month} {year}', "%d %b %Y").date()
+    return datetime.strptime(f"{day} {month} {year}", "%d %b %Y").date()
 
 
 def get_items(url, include_delivery_price=True):
