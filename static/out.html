@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <div class="container main">
+            <div class="row">
+                <div class="col-md-12 col-md-offset-4">
+                    <div class="panel panel-2">
+                        <div class="panel-body">
+                          <h1>Average Price: {{ "£%.2f"|format(average_price) }}</h1>
+                          <hr>
+                          <h3>Price history</h3>
+                          <div>
+                              <canvas id="myChart"></canvas>
+                          </div>
+                          <script>
+                              const labels = {{ dates|safe }};
+                            
+                              const data = {
+                                labels: labels,
+                                datasets: [
+                                  {
+                                    label: 'Low',
+                                    borderColor: 'rgb(107, 235, 52)',
+                                    backgroundColor: 'rgb(162, 240, 120)',
+                                    data: {{ graph.low }}
+                                  },
+                                  {
+                                    label: 'Average',
+                                    backgroundColor: 'rgb(120, 162, 240)',
+                                    borderColor: 'rgb(52, 107, 235)',
+                                    data: {{ graph.avg }}
+                                  },
+                                  {
+                                    label: 'High',
+                                    borderColor: 'rgb(235, 107, 52)',
+                                    backgroundColor: 'rgb(240, 162, 120)',
+                                    data: {{ graph.high }}
+                                  },
+                                ]
+                              };
+                            
+                              const config = {
+                                type: 'line',
+                                data: data,
+                                options: {fill: true}
+                              };
+
+                              const myChart = new Chart(
+                                document.getElementById('myChart'),
+                                config
+                              );
+                          </script>
+                          <hr>
+                          <h3>Statistics</h3>
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{ "£%.2f"|format(range.low) }} - {{ "£%.2f"|format(range.high) }}</h5>
+                                  <p class="card-text">Price range</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{ (volatility*100)|int }}%</h5>
+                                  <p class="card-text">Volatility</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{ sales }}</h5>
+                                  <p class="card-text">Number of sales</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{ "£%.2f"|format(average_price-range.low) }}</h5>
+                                  <p class="card-text">Average vs. all time low</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <p>Generated from Ebay sale history starting {{ dates[0] }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

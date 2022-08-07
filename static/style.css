@@ -2,18 +2,18 @@ body{
     background:#f3c538 !important;
 }
 
-.forget-password .panel-default{
+.main .panel-default{
     padding: 31%;
     margin-top: -27%;
 }
 
-.forget-password .panel-2{
+.main .panel-2{
     padding: 21%;
     margin-top: -17%;
 }
 
-.forget-password .panel-body{
-    padding: 15%;
+.main .panel-body{
+    padding: 8%;
     margin-bottom: -50%;
     background: #fff;
     border-radius: 5px;

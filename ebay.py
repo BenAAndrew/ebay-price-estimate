@@ -4,7 +4,6 @@ from selenium.common.exceptions import NoSuchElementException
 from datetime import datetime
 
 URL = "https://www.ebay.co.uk/sch/i.html?LH_Sold=1&_ipg=240&_nkw={search_term}&LH_ItemCondition={condition}"
-MAX_DIFF = 2
 
 
 def build_url(search_term, condition):
@@ -52,11 +51,3 @@ def get_items(url):
 
     driver.close()
     return items
-
-
-def remove_outliers(items):
-    prices = [i["price"] for i in items]
-    average_price = sum(prices) / len(prices)
-    min_price = average_price / MAX_DIFF
-    max_price = average_price * MAX_DIFF
-    return list(filter(lambda i: i["price"] >= min_price and i["price"] <= max_price, items))

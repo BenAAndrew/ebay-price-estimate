@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="style.css" rel="stylesheet">
+        <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div class="container forget-password">
+        <div class="container main">
             <div class="row">
                 <div class="col-md-12 col-md-offset-4">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="text-center">
-                                <img src="cash.png" alt="price">
+                                <img src="{{ url_for('static', filename='cash.png') }}" alt="price">
                                 <h2 class="text-center">Price search</h2>
                                 <p>Get a price estimate for an item from eBay sale history</p>
-                                <form role="form" autocomplete="off" class="form" method="POST" action="/anc">
+                                <form role="form" autocomplete="off" class="form" method="POST" action="/">
                                     <div class="form-group">
                                         <div class="input-group">
                                             <input id="search" name="search" placeholder="Search term" class="form-control" type="text">
