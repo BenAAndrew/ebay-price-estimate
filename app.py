@@ -1,6 +1,5 @@
 from ebay import build_url, get_items
 from flask import Flask, render_template, request
-# from main import items
 from analysis import get_date_series, get_volatility, remove_outliers
 
 app = Flask(__name__, template_folder="static")
