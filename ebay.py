@@ -7,6 +7,7 @@ from datetime import datetime
 URL = "https://www.ebay.co.uk/sch/i.html?LH_Sold=1&_ipg=240&_nkw={search_term}&LH_ItemCondition={condition}"
 chrome_options = Options()
 chrome_options.add_argument("--headless")
+chrome_options.add_argument('--no-sandbox')
 
 
 def build_url(search_term, condition):
