@@ -14,11 +14,11 @@ def index():
 def upload_dataset():
     url = build_url(request.form["search"], request.form["condition"])
     items = get_items(url, include_delivery_price=False)
-    items = remove_outliers(items)
 
     if len(items) < 10:
         return render_template("index.html", error="Insufficent items found")
 
+    items = remove_outliers(items)
     dates = sorted(set([i["date"] for i in items]))
     prices = [i["price"] for i in items]
     min_price = min(prices)
