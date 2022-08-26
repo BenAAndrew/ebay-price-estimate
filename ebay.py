@@ -8,6 +8,7 @@ URL = "https://www.ebay.co.uk/sch/i.html?LH_Sold=1&_ipg=240&_nkw={search_term}&L
 chrome_options = Options()
 chrome_options.add_argument("--headless")
 chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
 
 
 def build_url(search_term, condition):
