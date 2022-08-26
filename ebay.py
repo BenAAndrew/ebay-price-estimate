@@ -3,12 +3,13 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from datetime import datetime
+import os
 
 URL = "https://www.ebay.co.uk/sch/i.html?LH_Sold=1&_ipg=240&_nkw={search_term}&LH_ItemCondition={condition}"
 chrome_options = Options()
 chrome_options.add_argument("--headless")
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--no-sandbox")
 
 
 def build_url(search_term, condition):
@@ -42,7 +43,7 @@ def get_sale_date(item):
 
 
 def get_items(url, include_delivery_price=True):
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
     driver.get(url)
     page_items = driver.find_elements(By.CLASS_NAME, "s-item")[1:]
 
